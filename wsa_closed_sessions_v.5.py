@@ -42,13 +42,13 @@ def job():
                         A=A+1
                     else:
                         pass
-    
-       if A>50:
+# 300 below is the number of CLOSED connections that i am monitoring you can increase it as suitable     
+       if A>300:
           print ('%s Closed connection count is %d' % (wsa,A))
-          HOST = "smtp.dla.com"
+          HOST = "smtp.company.com" #Company SMTP server
           SUBJECT = "%s Closed connection count is %d" % (wsa,A)
-          TO = "admin.email@company.com"
-          FROM = "Notify@company.com"
+          TO = "admin.email@company.com" #your email address
+          FROM = "Notify@company.com"  #python email address
           text = "%s Closed connection count is %d" % (wsa,A)
           BODY = string.join((
     				"From: %s" % FROM,
@@ -60,7 +60,7 @@ def job():
           server = smtplib.SMTP(HOST)
           server.sendmail(FROM, [TO], BODY)
           server.quit()
-          
+          # you can add another action beside sending email is to send the proxykick command 
        else:
           print ('%s Closed connection count is %d' % (wsa,A))
               
